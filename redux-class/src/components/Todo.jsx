@@ -22,19 +22,34 @@ export default function Todo() {
   return (
     <>
       <AddForm />
-      <h3>Todos List App</h3>
-      <ul>
+      <h3 className="font-serif font-seimibold text-3xl my-10">Todos List App</h3>
+      <ul className="max-w-md mx-auto">
         {todos.todos.map((todo) => (
-          <li
-            key={todo.id}
-            style={{
-              textDecoration: todo.isDone ? "line-through" : "none",
-              opacity: todo.isDone ? 0.6 : 1,
-            }}
+         <li
+            className={`flex items-center bg-white p-3 my-3 rounded shadow transition-all ${
+             todo.isDone ? "opacity-60" : "opacity-100"
+             }` }
           >
-            {todo.task}
-            <button onClick={() => clickhandler(todo.id)}>Delete</button>
-            <button onClick={() => clickhandlerDone(todo.id)}>
+
+            <span
+               className={`flex-1 text-base transition-all ${
+              todo.isDone
+              ? "line-through text-gray-400 italic"
+              : "text-gray-800 font-medium"
+             }`}
+           >
+           {todo.task}
+           </span>
+
+            <button
+              onClick={() => clickhandler(todo.id)}
+              className="mx-8 my-2 bg-red-500 text-white border border-black rounded h-8 w-15 shadow-xl"
+            >
+              Delete
+            </button>
+
+            <button onClick={() => clickhandlerDone(todo.id)}
+              className=" bg-red-500 text-white rounded h-8 w-30 border border-black rounded shadow-xl">
               Mark as Done
             </button>
           </li>
